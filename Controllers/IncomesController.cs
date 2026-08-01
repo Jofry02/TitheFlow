@@ -1,5 +1,6 @@
 using Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Services;
 
 namespace Controllers;
@@ -7,10 +8,20 @@ namespace Controllers;
 public class IncomesController : Controller
 {
     private readonly IIncomeService _incomes;
+    private readonly ITitheCalculator _calculator;
+    private readonly ITitheRecordService _titheRecords;
+    private readonly TitheSettings _settings;
 
-    public IncomesController(IIncomeService incomes)
+    public IncomesController(
+        IIncomeService incomes,
+        ITitheCalculator calculator,
+        ITitheRecordService titheRecords,
+        IOptions<TitheSettings> settings)
     {
         _incomes = incomes;
+        _calculator = calculator;
+        _titheRecords = titheRecords;
+        _settings = settings.Value;
     }
 
     public IActionResult Index()
@@ -32,7 +43,9 @@ public class IncomesController : Controller
             return View(income);
         }
 
-        _incomes.Create(income);
+        income.TitheAmount = _calculator.Calculate(income.Amount);
+        var created = _incomes.Create(income);
+        _titheRecords.Add(created, income.TitheAmount, _settings.CalculateOnNet);
         return RedirectToAction(nameof(Index));
     }
 
@@ -61,7 +74,9 @@ public class IncomesController : Controller
             return View(income);
         }
 
+        income.TitheAmount = _calculator.Calculate(income.Amount);
         _incomes.Update(income);
+        _titheRecords.Add(income, income.TitheAmount, _settings.CalculateOnNet);
         return RedirectToAction(nameof(Index));
     }
 
@@ -82,6 +97,7 @@ public class IncomesController : Controller
     public IActionResult DeleteConfirmed(int id)
     {
         _incomes.Delete(id);
+        _titheRecords.RemoveByIncomeId(id);
         return RedirectToAction(nameof(Index));
     }
 }
