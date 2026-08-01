@@ -25,12 +25,29 @@
             </div>
             <div class="mb-3">
                 <label asp-for="Source" class="form-label"><i class="bi bi-tag me-1"></i>Fuente</label>
-                <input asp-for="Source" class="form-control" placeholder="Ej.: Sueldo, Negocio, Venta" />
+                <select asp-for="Source" class="form-select">
+                    <option value="">Selecciona una fuente...</option>
+                    <option value="Sueldo">Sueldo</option>
+                    <option value="Negocio">Negocio</option>
+                    <option value="Venta">Venta</option>
+                    <option value="Alquiler">Alquiler</option>
+                    <option value="Inversión">Inversión</option>
+                    <option value="Comisión">Comisión</option>
+                    <option value="Extraordinario">Extraordinario</option>
+                    <option value="Donación">Donación</option>
+                    <option value="Otro">Otro</option>
+                </select>
                 <span asp-validation-for="Source" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="Category" class="form-label"><i class="bi bi-collection me-1"></i>Categoría</label>
-                <input asp-for="Category" class="form-control" placeholder="Ej.: Sueldo, Extraordinario" />
+                <select asp-for="Category" class="form-select">
+                    <option value="">Selecciona una categoría...</option>
+                    <option value="Fijo">Fijo</option>
+                    <option value="Variable">Variable</option>
+                    <option value="Extraordinario">Extraordinario</option>
+                    <option value="Otro">Otro</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label asp-for="Date" class="form-label"><i class="bi bi-calendar-event me-1"></i>Fecha</label>
