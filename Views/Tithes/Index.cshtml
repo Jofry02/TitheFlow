@@ -1,0 +1,35 @@
+@model IEnumerable<Domain.TitheRecord>
+
+@{
+    ViewData["Title"] = "Historial de diezmos";
+}
+
+<h1>Historial de diezmos</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th class="text-end">Ingreso</th>
+            <th class="text-end">Diezmo</th>
+            <th>Base de cálculo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="4" class="text-center text-muted">Aún no hay cálculos de diezmo registrados.</td>
+            </tr>
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Date.ToString("yyyy-MM-dd")</td>
+                <td class="text-end">@item.IncomeAmount.ToString("C")</td>
+                <td class="text-end">@item.TitheAmount.ToString("C")</td>
+                <td>@(item.TitheOnNet ? "Sobre neto" : "Sobre bruto")</td>
+            </tr>
+        }
+    </tbody>
+</table>
