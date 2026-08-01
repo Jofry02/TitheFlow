@@ -211,6 +211,11 @@ h1, h2, h3, h4, h5 {
   border-radius: var(--tf-radius);
   color: #fff;
   box-shadow: var(--tf-shadow);
+  overflow: hidden;
+}
+
+.stat-card .card-body {
+  gap: 1rem;
 }
 
 .stat-card .card-title {
@@ -224,11 +229,22 @@ h1, h2, h3, h4, h5 {
 .stat-card .card-text {
   font-weight: 800;
   letter-spacing: -0.02em;
+  font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stat-card .stat-value {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .stat-card .bi {
-  font-size: 2rem;
+  font-size: 2.2rem;
   opacity: 0.9;
+  flex-shrink: 0;
 }
 
 .gradient-indigo { background: var(--tf-gradient); }

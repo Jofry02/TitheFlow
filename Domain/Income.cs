@@ -18,7 +18,7 @@ public class Income
 
     [Display(Name = "Categoría")]
     [StringLength(50, ErrorMessage = "El campo {0} no puede superar los {1} caracteres.")]
-    public string Category { get; set; } = string.Empty;
+    public string? Category { get; set; }
 
     [Display(Name = "Descripción")]
     [StringLength(500, ErrorMessage = "El campo {0} no puede superar los {1} caracteres.")]
