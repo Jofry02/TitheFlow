@@ -24,7 +24,7 @@
                 <th class="text-end">Monto</th>
                 <th class="text-end">Diezmo (10%)</th>
                 <th class="text-center">Entregado</th>
-                <th class="text-end">Acciones</th>
+                <th class="text-end">Eliminar</th>
             </tr>
         </thead>
         <tbody>
@@ -41,7 +41,14 @@
             {
                 <tr>
                     <td class="fw-semibold">@item.Date.ToString("yyyy-MM-dd")</td>
-                    <td>@item.Source</td>
+                    <td>
+                        <span class="d-inline-flex align-items-center gap-2">
+                            @item.Source
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                        </span>
+                    </td>
                     <td>
                         <span class="badge" style="background:rgba(99,102,241,0.12); color:var(--tf-primary-dark);">
                             @(string.IsNullOrEmpty(item.Category) ? "Sin categoría" : item.Category)
@@ -64,9 +71,6 @@
                         }
                     </td>
                     <td class="text-end">
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary" title="Editar">
-                            <i class="bi bi-pencil"></i> Editar
-                        </a>
                         <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger" title="Eliminar">
                             <i class="bi bi-trash3"></i> Eliminar
                         </a>
