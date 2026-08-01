@@ -1,0 +1,61 @@
+@model TitheFlow.Models.ReportViewModel
+
+@{
+    ViewData["Title"] = "Reportes";
+}
+
+<h1>Reportes de ingresos</h1>
+<hr />
+
+<form method="get" asp-action="Index" class="row g-3 align-items-end mb-4">
+    <div class="col-auto">
+        <label for="from" class="form-label">Desde</label>
+        <input type="date" id="from" name="from" class="form-control" value="@Model.From?.ToString("yyyy-MM-dd")" />
+    </div>
+    <div class="col-auto">
+        <label for="to" class="form-label">Hasta</label>
+        <input type="date" id="to" name="to" class="form-control" value="@Model.To?.ToString("yyyy-MM-dd")" />
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Limpiar</a>
+    </div>
+    <div class="col-auto">
+        <a asp-action="Export"
+           asp-route-from="@Model.From?.ToString("yyyy-MM-dd")"
+           asp-route-to="@Model.To?.ToString("yyyy-MM-dd")"
+           class="btn btn-success">Exportar CSV</a>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Fuente</th>
+            <th>Categoría</th>
+            <th class="text-end">Monto</th>
+            <th class="text-end">Diezmo</th>
+            <th>Entregado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Incomes.Any())
+        {
+            <tr>
+                <td colspan="6" class="text-center text-muted">No hay ingresos en el rango seleccionado.</td>
+            </tr>
+        }
+        @foreach (var item in Model.Incomes)
+        {
+            <tr>
+                <td>@item.Date.ToString("yyyy-MM-dd")</td>
+                <td>@item.Source</td>
+                <td>@item.Category</td>
+                <td class="text-end">@item.Amount.ToString("C")</td>
+                <td class="text-end">@item.TitheAmount.ToString("C")</td>
+                <td>@(item.TithePaid ? "Sí" : "No")</td>
+            </tr>
+        }
+    </tbody>
+</table>
