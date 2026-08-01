@@ -8,6 +8,7 @@ builder.Services.AddSingleton<IIncomeService, IncomeService>();
 builder.Services.AddSingleton<ITitheRecordService, TitheRecordService>();
 builder.Services.AddSingleton<ITitheCalculator, TitheCalculator>();
 builder.Services.AddSingleton<IDashboardService, DashboardService>();
+builder.Services.AddSingleton<IReportService, ReportService>();
 builder.Services.Configure<TitheSettings>(builder.Configuration.GetSection("TitheSettings"));
 
 var app = builder.Build();

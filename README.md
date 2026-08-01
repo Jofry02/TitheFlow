@@ -58,6 +58,13 @@ El módulo de resumen (`DashboardController`) muestra los indicadores clave:
 - Total del diezmo entregado (se marca en el formulario de edición del ingreso).
 - Desglose mensual (ingresos, diezmo calculado y diezmo entregado por mes).
 
+## Reportes y exportación
+
+El módulo de reportes (`ReportsController`) permite:
+
+- Consultar el historial de ingresos filtrado por rango de fechas.
+- Exportar el resultado a un archivo CSV descargable (`ExportCsv`).
+
 ## Flujo Git Flow
 
 El repositorio sigue la metodología **Git Flow**:
