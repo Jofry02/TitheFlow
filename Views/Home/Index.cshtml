@@ -2,40 +2,71 @@
     ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">TitheFlow</h1>
-    <p class="lead">Gestor de Diezmos y Mayordomía</p>
-    <p>
-        Registra tus ingresos (fijos, variables o extraordinarios), calcula automáticamente el diezmo
-        (10%) y otros aportes, y mantén un historial claro de tus cálculos.
-    </p>
-</div>
+<section class="hero mb-4 text-center">
+    <div class="position-relative">
+        <h1 class="display-4 fw-bold">TitheFlow</h1>
+        <p class="lead mb-3 opacity-75">Gestor de Diezmos y Mayordomía</p>
+        <p class="col-lg-8 mx-auto opacity-75">
+            Registra tus ingresos (fijos, variables o extraordinarios), calcula automáticamente el diezmo
+            (10%) y otros aportes, y mantén un historial claro de tus cálculos.
+        </p>
+        <div class="d-flex justify-content-center gap-2 flex-wrap">
+            <a asp-controller="Incomes" asp-action="Create" class="btn btn-light">
+                <i class="bi bi-plus-circle me-1"></i>Registrar ingreso
+            </a>
+            <a asp-controller="Dashboard" asp-action="Index" class="btn btn-outline-light border-white opacity-75">
+                <i class="bi bi-graph-up-arrow me-1"></i>Ver resumen
+            </a>
+        </div>
+    </div>
+</section>
 
-<div class="row mt-4">
-    <div class="col-md-4 mb-3">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Gestión de ingresos</h5>
-                <p class="card-text">Crea, edita y elimina registros de ingresos con su categoría y descripción.</p>
-                <a asp-controller="Incomes" asp-action="Index" class="btn btn-primary">Ir a Ingresos</a>
+<div class="row mt-4 g-4">
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body p-4">
+                <div class="mb-3">
+                    <span class="badge text-bg-primary bg-opacity-10" style="font-size:1.4rem; padding:0.7rem 0.9rem; background:rgba(99,102,241,0.12); color:var(--tf-primary-dark);">
+                        <i class="bi bi-wallet2"></i>
+                    </span>
+                </div>
+                <h5 class="card-title fw-bold">Gestión de ingresos</h5>
+                <p class="card-text muted-note">Crea, edita y elimina registros de ingresos con su categoría y descripción.</p>
+                <a asp-controller="Incomes" asp-action="Index" class="btn btn-outline-primary btn-sm">
+                    Ir a Ingresos <i class="bi bi-arrow-right ms-1"></i>
+                </a>
             </div>
         </div>
     </div>
-    <div class="col-md-4 mb-3">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Cálculo del diezmo</h5>
-                <p class="card-text">El 10% sugerido se calcula automáticamente al registrar cada ingreso.</p>
-                <a asp-controller="Incomes" asp-action="Create" class="btn btn-outline-primary">Registrar ingreso</a>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body p-4">
+                <div class="mb-3">
+                    <span class="badge" style="font-size:1.4rem; padding:0.7rem 0.9rem; background:rgba(16,185,129,0.12); color:var(--tf-accent);">
+                        <i class="bi bi-percent"></i>
+                    </span>
+                </div>
+                <h5 class="card-title fw-bold">Cálculo del diezmo</h5>
+                <p class="card-text muted-note">El 10% sugerido se calcula automáticamente al registrar cada ingreso.</p>
+                <a asp-controller="Tithes" asp-action="Index" class="btn btn-outline-primary btn-sm">
+                    Ver historial <i class="bi bi-arrow-right ms-1"></i>
+                </a>
             </div>
         </div>
     </div>
-    <div class="col-md-4 mb-3">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Historial y resúmenes</h5>
-                <p class="card-text">Consulta tus totales acumulados y el historial de cálculos del diezmo.</p>
-                <a asp-controller="Incomes" asp-action="Index" class="btn btn-outline-primary">Ver resumen</a>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body p-4">
+                <div class="mb-3">
+                    <span class="badge" style="font-size:1.4rem; padding:0.7rem 0.9rem; background:rgba(14,165,233,0.12); color:var(--tf-primary-dark);">
+                        <i class="bi bi-bar-chart-line"></i>
+                    </span>
+                </div>
+                <h5 class="card-title fw-bold">Historial y resúmenes</h5>
+                <p class="card-text muted-note">Consulta tus totales acumulados y el historial de cálculos del diezmo.</p>
+                <a asp-controller="Dashboard" asp-action="Index" class="btn btn-outline-primary btn-sm">
+                    Ver resumen <i class="bi bi-arrow-right ms-1"></i>
+                </a>
             </div>
         </div>
     </div>

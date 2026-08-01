@@ -4,32 +4,55 @@
     ViewData["Title"] = "Historial de diezmos";
 }
 
-<h1>Historial de diezmos</h1>
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+    <div>
+        <h1 class="page-title"><i class="bi bi-clock-history me-2" style="color:var(--tf-primary);"></i>Historial de diezmos</h1>
+        <p class="muted-note mb-0">Registro de todos los cálculos de diezmo realizados.</p>
+    </div>
+</div>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Fecha</th>
-            <th class="text-end">Ingreso</th>
-            <th class="text-end">Diezmo</th>
-            <th>Base de cálculo</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (!Model.Any())
-        {
+<div class="table-responsive">
+    <table class="table table-striped align-middle">
+        <thead>
             <tr>
-                <td colspan="4" class="text-center text-muted">Aún no hay cálculos de diezmo registrados.</td>
+                <th>Fecha</th>
+                <th class="text-end">Ingreso</th>
+                <th class="text-end">Diezmo</th>
+                <th>Base de cálculo</th>
             </tr>
-        }
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Date.ToString("yyyy-MM-dd")</td>
-                <td class="text-end">@item.IncomeAmount.ToString("C")</td>
-                <td class="text-end">@item.TitheAmount.ToString("C")</td>
-                <td>@(item.TitheOnNet ? "Sobre neto" : "Sobre bruto")</td>
-            </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="4" class="text-center text-muted py-4">
+                        <i class="bi bi-clock fs-3 d-block mb-2 opacity-50"></i>
+                        Aún no hay cálculos de diezmo registrados.
+                    </td>
+                </tr>
+            }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="fw-semibold">@item.Date.ToString("yyyy-MM-dd")</td>
+                    <td class="text-end fw-bold">@item.IncomeAmount.ToString("C")</td>
+                    <td class="text-end fw-semibold" style="color:var(--tf-accent);">@item.TitheAmount.ToString("C")</td>
+                    <td>
+                        @if (item.TitheOnNet)
+                        {
+                            <span class="badge" style="background:rgba(245,158,11,0.15); color:#b45309;">
+                                <i class="bi bi-database me-1"></i>Sobre neto
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge" style="background:rgba(99,102,241,0.12); color:var(--tf-primary-dark);">
+                                <i class="bi bi-database me-1"></i>Sobre bruto
+                            </span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
