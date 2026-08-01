@@ -4,71 +4,95 @@
     ViewData["Title"] = "Resumen";
 }
 
-<h1>Resumen general</h1>
-<hr />
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+    <div>
+        <h1 class="page-title"><i class="bi bi-graph-up-arrow me-2" style="color:var(--tf-primary);"></i>Resumen general</h1>
+        <p class="muted-note mb-0">Indicadores clave de tus ingresos y diezmos.</p>
+    </div>
+</div>
 
-<div class="row mb-4">
-    <div class="col-md-3 mb-3">
-        <div class="card text-white bg-primary">
-            <div class="card-body">
-                <h5 class="card-title">Ingresos</h5>
-                <p class="card-text fs-3">@Model.TotalIncomes</p>
+<div class="row mb-4 g-4">
+    <div class="col-md-3">
+        <div class="card stat-card gradient-indigo">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="card-title mb-1">Ingresos</div>
+                    <div class="card-text fs-2">@Model.TotalIncomes</div>
+                </div>
+                <i class="bi bi-wallet2"></i>
             </div>
         </div>
     </div>
-    <div class="col-md-3 mb-3">
-        <div class="card text-white bg-success">
-            <div class="card-body">
-                <h5 class="card-title">Total ingresos</h5>
-                <p class="card-text fs-3">@Model.TotalIncome.ToString("C")</p>
+    <div class="col-md-3">
+        <div class="card stat-card gradient-emerald">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="card-title mb-1">Total ingresos</div>
+                    <div class="card-text fs-2">@Model.TotalIncome.ToString("C")</div>
+                </div>
+                <i class="bi bi-cash-stack"></i>
             </div>
         </div>
     </div>
-    <div class="col-md-3 mb-3">
-        <div class="card text-white bg-warning">
-            <div class="card-body">
-                <h5 class="card-title">Diezmo calculado</h5>
-                <p class="card-text fs-3">@Model.TotalTitheCalculated.ToString("C")</p>
+    <div class="col-md-3">
+        <div class="card stat-card gradient-amber">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="card-title mb-1">Diezmo calculado</div>
+                    <div class="card-text fs-2">@Model.TotalTitheCalculated.ToString("C")</div>
+                </div>
+                <i class="bi bi-percent"></i>
             </div>
         </div>
     </div>
-    <div class="col-md-3 mb-3">
-        <div class="card text-white bg-info">
-            <div class="card-body">
-                <h5 class="card-title">Diezmo entregado</h5>
-                <p class="card-text fs-3">@Model.TotalTithePaid.ToString("C")</p>
+    <div class="col-md-3">
+        <div class="card stat-card gradient-sky">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="card-title mb-1">Diezmo entregado</div>
+                    <div class="card-text fs-2">@Model.TotalTithePaid.ToString("C")</div>
+                </div>
+                <i class="bi bi-check2-circle"></i>
             </div>
         </div>
     </div>
 </div>
 
-<h2>Resumen mensual</h2>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Mes</th>
-            <th class="text-end">Ingresos</th>
-            <th class="text-end">Total ingresos</th>
-            <th class="text-end">Diezmo calculado</th>
-            <th class="text-end">Diezmo entregado</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (!Model.Monthly.Any())
-        {
+<div class="d-flex align-items-center gap-2 mb-3">
+    <h2 class="mb-0 fw-bold fs-4"><i class="bi bi-calendar-range me-2" style="color:var(--tf-primary);"></i>Resumen mensual</h2>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped align-middle">
+        <thead>
             <tr>
-                <td colspan="5" class="text-center text-muted">No hay datos para mostrar.</td>
+                <th>Mes</th>
+                <th class="text-end">Ingresos</th>
+                <th class="text-end">Total ingresos</th>
+                <th class="text-end">Diezmo calculado</th>
+                <th class="text-end">Diezmo entregado</th>
             </tr>
-        }
-        @foreach (var item in Model.Monthly)
-        {
-            <tr>
-                <td>@item.Year-@item.Month.ToString("00")</td>
-                <td class="text-end">@item.Incomes</td>
-                <td class="text-end">@item.Income.ToString("C")</td>
-                <td class="text-end">@item.Tithe.ToString("C")</td>
-                <td class="text-end">@item.TithePaid.ToString("C")</td>
-            </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @if (!Model.Monthly.Any())
+            {
+                <tr>
+                    <td colspan="5" class="text-center text-muted py-4">
+                        <i class="bi bi-clipboard-data fs-3 d-block mb-2 opacity-50"></i>
+                        No hay datos para mostrar.
+                    </td>
+                </tr>
+            }
+            @foreach (var item in Model.Monthly)
+            {
+                <tr>
+                    <td class="fw-semibold">@item.Year-@item.Month.ToString("00")</td>
+                    <td class="text-end">@item.Incomes</td>
+                    <td class="text-end fw-bold">@item.Income.ToString("C")</td>
+                    <td class="text-end fw-semibold" style="color:var(--tf-accent);">@item.Tithe.ToString("C")</td>
+                    <td class="text-end">@item.TithePaid.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

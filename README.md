@@ -37,6 +37,13 @@ dotnet run
 
 La aplicación estará disponible en `http://localhost:5xxx` (ver `Properties/launchSettings.json`).
 
+## Interfaz
+
+Tema moderno basado en Bootstrap 5 con iconos de **Bootstrap Icons** (incluidos localmente en
+`wwwroot/lib/bootstrap-icons`, sin dependencias externas): navbar con estado activo, hero en la página
+de inicio, tarjetas de estadísticas con degradados, tablas y formularios redondeados, y badges de
+estado para categorías y diezmo entregado.
+
 ## Cálculo del diezmo
 
 El diezmo sugerido (10%) se calcula automáticamente al crear o editar un ingreso. La base de cálculo
@@ -91,6 +98,7 @@ El repositorio sigue la metodología **Git Flow**:
 - `feature/summary-dashboard` -> Vista de resúmenes mensuales e indicadores clave.
 - `feature/export-reports` -> Exportación de reportes y consulta del historial por rango de fechas.
 - `hotfix/fix-decimal-precision` -> Corrección del redondeo de centavos en el cálculo del diezmo.
+- `feature/modern-ui` -> Interfaz moderna y atractiva (tema personalizado, iconos, hero, tarjetas).
 
 Cada rama se integra mediante **Pull Requests** hacia `dev`, `qa` y `main`, de modo que al final del
 flujo todos los cambios quedan integrados en `main`.
