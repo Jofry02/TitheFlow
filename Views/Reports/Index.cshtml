@@ -78,8 +78,8 @@
                             @(string.IsNullOrEmpty(item.Category) ? "Sin categoría" : item.Category)
                         </span>
                     </td>
-                    <td class="text-end fw-bold">@item.Amount.ToString("C")</td>
-                    <td class="text-end fw-semibold" style="color:var(--tf-accent);">@item.TitheAmount.ToString("C")</td>
+                    <td class="text-end fw-bold">@item.Amount.ToString("N2")</td>
+                    <td class="text-end fw-semibold" style="color:var(--tf-accent);">@item.TitheAmount.ToString("N2")</td>
                     <td class="text-center">
                         @if (item.TithePaid)
                         {
