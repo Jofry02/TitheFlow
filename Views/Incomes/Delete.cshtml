@@ -1,0 +1,26 @@
+@model Domain.Income
+
+@{
+    ViewData["Title"] = "Eliminar ingreso";
+}
+
+<h1>Eliminar ingreso</h1>
+<h3>¿Estás seguro de que deseas eliminar este ingreso?</h3>
+<hr />
+<dl class="row">
+    <dt class="col-sm-2">Fecha</dt>
+    <dd class="col-sm-10">@Model.Date.ToString("yyyy-MM-dd")</dd>
+    <dt class="col-sm-2">Fuente</dt>
+    <dd class="col-sm-10">@Model.Source</dd>
+    <dt class="col-sm-2">Categoría</dt>
+    <dd class="col-sm-10">@Model.Category</dd>
+    <dt class="col-sm-2">Monto</dt>
+    <dd class="col-sm-10">@Model.Amount.ToString("C")</dd>
+    <dt class="col-sm-2">Descripción</dt>
+    <dd class="col-sm-10">@Model.Description</dd>
+</dl>
+<form asp-action="Delete" method="post">
+    <input asp-for="Id" type="hidden" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+</form>

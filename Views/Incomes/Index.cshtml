@@ -1,0 +1,43 @@
+@model IEnumerable<Domain.Income>
+
+@{
+    ViewData["Title"] = "Ingresos";
+}
+
+<h1>Ingresos</h1>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Registrar ingreso</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Fuente</th>
+            <th>Categoría</th>
+            <th class="text-end">Monto</th>
+            <th class="text-end">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="5" class="text-center text-muted">No hay ingresos registrados.</td>
+            </tr>
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Date.ToString("yyyy-MM-dd")</td>
+                <td>@item.Source</td>
+                <td>@item.Category</td>
+                <td class="text-end">@item.Amount.ToString("C")</td>
+                <td class="text-end">
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
