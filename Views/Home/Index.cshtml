@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="text-center">
+    <h1 class="display-4">TitheFlow</h1>
+    <p class="lead">Gestor de Diezmos y Mayordomía</p>
+    <p>
+        Registra tus ingresos (fijos, variables o extraordinarios), calcula automáticamente el diezmo
+        (10%) y otros aportes, y mantén un historial claro de tus cálculos.
+    </p>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Gestión de ingresos</h5>
+                <p class="card-text">Crea, edita y elimina registros de ingresos con su categoría y descripción.</p>
+                <a asp-controller="Incomes" asp-action="Index" class="btn btn-primary">Ir a Ingresos</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Cálculo del diezmo</h5>
+                <p class="card-text">El 10% sugerido se calcula automáticamente al registrar cada ingreso.</p>
+                <a asp-controller="Incomes" asp-action="Create" class="btn btn-outline-primary">Registrar ingreso</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Historial y resúmenes</h5>
+                <p class="card-text">Consulta tus totales acumulados y el historial de cálculos del diezmo.</p>
+                <a asp-controller="Incomes" asp-action="Index" class="btn btn-outline-primary">Ver resumen</a>
+            </div>
+        </div>
+    </div>
+</div>
