@@ -1,0 +1,74 @@
+@model TitheFlow.Models.DashboardViewModel
+
+@{
+    ViewData["Title"] = "Resumen";
+}
+
+<h1>Resumen general</h1>
+<hr />
+
+<div class="row mb-4">
+    <div class="col-md-3 mb-3">
+        <div class="card text-white bg-primary">
+            <div class="card-body">
+                <h5 class="card-title">Ingresos</h5>
+                <p class="card-text fs-3">@Model.TotalIncomes</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card text-white bg-success">
+            <div class="card-body">
+                <h5 class="card-title">Total ingresos</h5>
+                <p class="card-text fs-3">@Model.TotalIncome.ToString("C")</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card text-white bg-warning">
+            <div class="card-body">
+                <h5 class="card-title">Diezmo calculado</h5>
+                <p class="card-text fs-3">@Model.TotalTitheCalculated.ToString("C")</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card text-white bg-info">
+            <div class="card-body">
+                <h5 class="card-title">Diezmo entregado</h5>
+                <p class="card-text fs-3">@Model.TotalTithePaid.ToString("C")</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>Resumen mensual</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Mes</th>
+            <th class="text-end">Ingresos</th>
+            <th class="text-end">Total ingresos</th>
+            <th class="text-end">Diezmo calculado</th>
+            <th class="text-end">Diezmo entregado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Monthly.Any())
+        {
+            <tr>
+                <td colspan="5" class="text-center text-muted">No hay datos para mostrar.</td>
+            </tr>
+        }
+        @foreach (var item in Model.Monthly)
+        {
+            <tr>
+                <td>@item.Year-@item.Month.ToString("00")</td>
+                <td class="text-end">@item.Incomes</td>
+                <td class="text-end">@item.Income.ToString("C")</td>
+                <td class="text-end">@item.Tithe.ToString("C")</td>
+                <td class="text-end">@item.TithePaid.ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -32,6 +32,10 @@
         <label asp-for="Description" class="form-label"></label>
         <textarea asp-for="Description" class="form-control" rows="3"></textarea>
     </div>
+    <div class="mb-3 form-check">
+        <input asp-for="TithePaid" class="form-check-input" />
+        <label asp-for="TithePaid" class="form-check-label"></label>
+    </div>
     <button type="submit" class="btn btn-primary">Guardar cambios</button>
     <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
 </form>
