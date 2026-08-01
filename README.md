@@ -49,6 +49,15 @@ se configura en `appsettings.json`:
 
 Cada cálculo queda registrado en el historial de diezmos (`TithesController`).
 
+## Resumen e indicadores
+
+El módulo de resumen (`DashboardController`) muestra los indicadores clave:
+
+- Total de ingresos y de registros.
+- Total del diezmo calculado.
+- Total del diezmo entregado (se marca en el formulario de edición del ingreso).
+- Desglose mensual (ingresos, diezmo calculado y diezmo entregado por mes).
+
 ## Flujo Git Flow
 
 El repositorio sigue la metodología **Git Flow**:

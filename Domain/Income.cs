@@ -22,6 +22,8 @@ public class Income
 
     public decimal TitheAmount { get; set; }
 
+    public bool TithePaid { get; set; }
+
     [DataType(DataType.Date)]
     public DateTime Date { get; set; } = DateTime.UtcNow;
 }
