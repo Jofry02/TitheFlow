@@ -37,6 +37,18 @@ dotnet run
 
 La aplicación estará disponible en `http://localhost:5xxx` (ver `Properties/launchSettings.json`).
 
+## Cálculo del diezmo
+
+El diezmo sugerido (10%) se calcula automáticamente al crear o editar un ingreso. La base de cálculo
+se configura en `appsettings.json`:
+
+- `TitheSettings:Rate` -> porcentaje del diezmo (por defecto `0.10`).
+- `TitheSettings:CalculateOnNet` -> si es `true`, el diezmo se calcula sobre el monto neto
+  (después de restar el porcentaje de deducción `DeductionPercent`).
+- `TitheSettings:DeductionPercent` -> porcentaje de deducciones aplicado antes del cálculo.
+
+Cada cálculo queda registrado en el historial de diezmos (`TithesController`).
+
 ## Flujo Git Flow
 
 El repositorio sigue la metodología **Git Flow**:
