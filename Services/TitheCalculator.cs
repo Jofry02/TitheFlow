@@ -18,6 +18,6 @@ public class TitheCalculator : ITitheCalculator
             ? amount * (1m - _settings.DeductionPercent / 100m)
             : amount;
 
-        return Math.Round(baseAmount * _settings.Rate, 2);
+        return Math.Round(baseAmount * _settings.Rate, 2, MidpointRounding.AwayFromZero);
     }
 }

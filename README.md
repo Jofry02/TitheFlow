@@ -65,6 +65,12 @@ El módulo de reportes (`ReportsController`) permite:
 - Consultar el historial de ingresos filtrado por rango de fechas.
 - Exportar el resultado a un archivo CSV descargable (`ExportCsv`).
 
+## Precisión decimal (hotfix)
+
+El cálculo del diezmo redondea a 2 decimales usando `MidpointRounding.AwayFromZero`
+(redondeo comercial), evitando la pérdida de centavos del redondeo bancario por defecto.
+Ejemplo: un ingreso de `10.05` genera un diezmo de `1.01`.
+
 ## Flujo Git Flow
 
 El repositorio sigue la metodología **Git Flow**:
