@@ -35,8 +35,8 @@
             {
                 <tr>
                     <td class="fw-semibold">@item.Date.ToString("yyyy-MM-dd")</td>
-                    <td class="text-end fw-bold">@item.IncomeAmount.ToString("C")</td>
-                    <td class="text-end fw-semibold" style="color:var(--tf-accent);">@item.TitheAmount.ToString("C")</td>
+                    <td class="text-end fw-bold">@item.IncomeAmount.ToString("N2")</td>
+                    <td class="text-end fw-semibold" style="color:var(--tf-accent);">@item.TitheAmount.ToString("N2")</td>
                     <td>
                         @if (item.TitheOnNet)
                         {
