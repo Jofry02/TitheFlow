@@ -4,58 +4,98 @@
     ViewData["Title"] = "Reportes";
 }
 
-<h1>Reportes de ingresos</h1>
-<hr />
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+    <div>
+        <h1 class="page-title"><i class="bi bi-file-earmark-bar-graph me-2" style="color:var(--tf-primary);"></i>Reportes de ingresos</h1>
+        <p class="muted-note mb-0">Consulta el historial por rango de fechas y exporta a CSV.</p>
+    </div>
+</div>
 
-<form method="get" asp-action="Index" class="row g-3 align-items-end mb-4">
-    <div class="col-auto">
-        <label for="from" class="form-label">Desde</label>
-        <input type="date" id="from" name="from" class="form-control" value="@Model.From?.ToString("yyyy-MM-dd")" />
+<div class="card mb-4">
+    <div class="card-body p-3">
+        <form method="get" asp-action="Index" class="row g-2 align-items-end">
+            <div class="col-auto">
+                <label for="from" class="form-label small">Desde</label>
+                <input type="date" id="from" name="from" class="form-control" value="@Model.From?.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-auto">
+                <label for="to" class="form-label small">Hasta</label>
+                <input type="date" id="to" name="to" class="form-control" value="@Model.To?.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-auto">
+                <label class="d-none d-sm-block form-label small">&nbsp;</label>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="bi bi-funnel me-1"></i>Filtrar
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
+                        <i class="bi bi-x-lg me-1"></i>Limpiar
+                    </a>
+                </div>
+            </div>
+            <div class="col-auto ms-auto">
+                <label class="d-none d-sm-block form-label small">&nbsp;</label>
+                <a asp-action="Export"
+                   asp-route-from="@Model.From?.ToString("yyyy-MM-dd")"
+                   asp-route-to="@Model.To?.ToString("yyyy-MM-dd")"
+                   class="btn btn-success btn-sm">
+                    <i class="bi bi-download me-1"></i>Exportar CSV
+                </a>
+            </div>
+        </form>
     </div>
-    <div class="col-auto">
-        <label for="to" class="form-label">Hasta</label>
-        <input type="date" id="to" name="to" class="form-control" value="@Model.To?.ToString("yyyy-MM-dd")" />
-    </div>
-    <div class="col-auto">
-        <button type="submit" class="btn btn-primary">Filtrar</button>
-        <a asp-action="Index" class="btn btn-outline-secondary">Limpiar</a>
-    </div>
-    <div class="col-auto">
-        <a asp-action="Export"
-           asp-route-from="@Model.From?.ToString("yyyy-MM-dd")"
-           asp-route-to="@Model.To?.ToString("yyyy-MM-dd")"
-           class="btn btn-success">Exportar CSV</a>
-    </div>
-</form>
+</div>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Fecha</th>
-            <th>Fuente</th>
-            <th>Categoría</th>
-            <th class="text-end">Monto</th>
-            <th class="text-end">Diezmo</th>
-            <th>Entregado</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (!Model.Incomes.Any())
-        {
+<div class="table-responsive">
+    <table class="table table-striped align-middle">
+        <thead>
             <tr>
-                <td colspan="6" class="text-center text-muted">No hay ingresos en el rango seleccionado.</td>
+                <th>Fecha</th>
+                <th>Fuente</th>
+                <th>Categoría</th>
+                <th class="text-end">Monto</th>
+                <th class="text-end">Diezmo</th>
+                <th class="text-center">Entregado</th>
             </tr>
-        }
-        @foreach (var item in Model.Incomes)
-        {
-            <tr>
-                <td>@item.Date.ToString("yyyy-MM-dd")</td>
-                <td>@item.Source</td>
-                <td>@item.Category</td>
-                <td class="text-end">@item.Amount.ToString("C")</td>
-                <td class="text-end">@item.TitheAmount.ToString("C")</td>
-                <td>@(item.TithePaid ? "Sí" : "No")</td>
-            </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @if (!Model.Incomes.Any())
+            {
+                <tr>
+                    <td colspan="6" class="text-center text-muted py-4">
+                        <i class="bi bi-file-earmark-x fs-3 d-block mb-2 opacity-50"></i>
+                        No hay ingresos en el rango seleccionado.
+                    </td>
+                </tr>
+            }
+            @foreach (var item in Model.Incomes)
+            {
+                <tr>
+                    <td class="fw-semibold">@item.Date.ToString("yyyy-MM-dd")</td>
+                    <td>@item.Source</td>
+                    <td>
+                        <span class="badge" style="background:rgba(99,102,241,0.12); color:var(--tf-primary-dark);">
+                            @(string.IsNullOrEmpty(item.Category) ? "Sin categoría" : item.Category)
+                        </span>
+                    </td>
+                    <td class="text-end fw-bold">@item.Amount.ToString("C")</td>
+                    <td class="text-end fw-semibold" style="color:var(--tf-accent);">@item.TitheAmount.ToString("C")</td>
+                    <td class="text-center">
+                        @if (item.TithePaid)
+                        {
+                            <span class="badge" style="background:rgba(16,185,129,0.15); color:#059669;">
+                                <i class="bi bi-check-circle me-1"></i>Sí
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge" style="background:rgba(100,116,139,0.12); color:var(--tf-text-muted);">
+                                <i class="bi bi-x-circle me-1"></i>No
+                            </span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
