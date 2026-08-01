@@ -17,7 +17,7 @@
             <div class="card-body d-flex justify-content-between align-items-center">
                 <div class="stat-value">
                     <div class="card-title mb-1">Ingresos</div>
-                    <div class="card-text">@(Model.TotalIncomes > 0 ? Model.TotalIncomes.ToString() : "—")</div>
+                    <div class="card-text">@Model.TotalIncomes</div>
                 </div>
                 <i class="bi bi-wallet2"></i>
             </div>
@@ -28,7 +28,7 @@
             <div class="card-body">
                 <div class="stat-value">
                     <div class="card-title mb-1">Total ingresos</div>
-                    <div class="card-text">@(Model.TotalIncome > 0 ? Model.TotalIncome.ToString("C") : "—")</div>
+                    <div class="card-text">@Model.TotalIncome.ToString("N2")</div>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
             <div class="card-body d-flex justify-content-between align-items-center">
                 <div class="stat-value">
                     <div class="card-title mb-1">Diezmo calculado</div>
-                    <div class="card-text">@(Model.TotalTitheCalculated > 0 ? Model.TotalTitheCalculated.ToString("C") : "—")</div>
+                    <div class="card-text">@Model.TotalTitheCalculated.ToString("N2")</div>
                 </div>
                 <i class="bi bi-percent"></i>
             </div>
@@ -49,7 +49,7 @@
             <div class="card-body d-flex justify-content-between align-items-center">
                 <div class="stat-value">
                     <div class="card-title mb-1">Diezmo entregado</div>
-                    <div class="card-text">@(Model.TotalTithePaid > 0 ? Model.TotalTithePaid.ToString("C") : "—")</div>
+                    <div class="card-text">@Model.TotalTithePaid.ToString("N2")</div>
                 </div>
                 <i class="bi bi-check2-circle"></i>
             </div>
@@ -87,9 +87,9 @@
                 <tr>
                     <td class="fw-semibold">@item.Year-@item.Month.ToString("00")</td>
                     <td class="text-end">@item.Incomes</td>
-                    <td class="text-end fw-bold">@item.Income.ToString("C")</td>
-                    <td class="text-end fw-semibold" style="color:var(--tf-accent);">@item.Tithe.ToString("C")</td>
-                    <td class="text-end">@item.TithePaid.ToString("C")</td>
+                    <td class="text-end fw-bold">@item.Income.ToString("N2")</td>
+                    <td class="text-end fw-semibold" style="color:var(--tf-accent);">@item.Tithe.ToString("N2")</td>
+                    <td class="text-end">@item.TithePaid.ToString("N2")</td>
                 </tr>
             }
         </tbody>

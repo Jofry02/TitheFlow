@@ -26,9 +26,9 @@
                 </span>
             </dd>
             <dt class="col-sm-4 fw-semibold">Monto</dt>
-            <dd class="col-sm-8 fw-bold">@Model.Amount.ToString("C")</dd>
+            <dd class="col-sm-8 fw-bold">@Model.Amount.ToString("N2")</dd>
             <dt class="col-sm-4 fw-semibold">Diezmo</dt>
-            <dd class="col-sm-8 fw-semibold" style="color:var(--tf-accent);">@Model.TitheAmount.ToString("C")</dd>
+            <dd class="col-sm-8 fw-semibold" style="color:var(--tf-accent);">@Model.TitheAmount.ToString("N2")</dd>
             <dt class="col-sm-4 fw-semibold">Descripción</dt>
             <dd class="col-sm-8">@Model.Description</dd>
         </dl>
